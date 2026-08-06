@@ -148,7 +148,7 @@ function setupSurpriseModal() {
 }
 
 // Utility to create star rating element (10-star scale)
-function createRating(storageKey) {
+function createRating(storageKey, itemData = null) {
   const container = document.createElement('div');
   container.className = 'rating-wrapper';
 
@@ -222,9 +222,9 @@ function renderCategory(key, items) {
     img.title = 'Click to zoom in 🔍';
     img.style.cursor = 'zoom-in';
 
-    // Click to open full-screen lightbox preview
+    // Click image to open product page in new tab
     img.addEventListener('click', () => {
-      openLightbox(img.src, item.title);
+      window.open(item.url, '_blank');
     });
 
     // Fallback handler if .jpg is not found (tries .png, .jpeg, .webp, placeholder)
@@ -253,7 +253,7 @@ function renderCategory(key, items) {
 
     // Rating star control for individual item
     const itemRatingKey = `item_rating_${key}_${index}`;
-    const ratingEl = createRating(itemRatingKey);
+    const ratingEl = createRating(itemRatingKey, item);
     ratingEl.classList.add('item-rating');
 
     const link = document.createElement('a');
@@ -263,11 +263,12 @@ function renderCategory(key, items) {
     link.textContent = 'View Product Link';
     link.className = 'product-link';
     
+    // Ensure rating and link are above the image for clickability
+    card.appendChild(ratingEl);
+    card.appendChild(link);
     card.appendChild(img);
     card.appendChild(title);
     card.appendChild(priceTag);
-    card.appendChild(ratingEl);
-    card.appendChild(link);
     grid.appendChild(card);
   });
   section.appendChild(grid);
