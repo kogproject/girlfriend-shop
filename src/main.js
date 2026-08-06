@@ -131,46 +131,49 @@ function renderSpecialCollection(key, items) {
   return wrapper;
 }
 
+// Create falling flower petals animation
+function createFloatingPetals() {
+  const petalsContainer = document.createElement('div');
+  petalsContainer.className = 'petals-container';
+  const symbols = ['🌸', '🌹', '🌺', '🌷', '✨', '💖'];
+
+  for (let i = 0; i < 20; i++) {
+    const petal = document.createElement('span');
+    petal.className = 'petal';
+    petal.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    petal.style.left = `${Math.random() * 100}%`;
+    petal.style.animationDuration = `${5 + Math.random() * 8}s`;
+    petal.style.animationDelay = `${Math.random() * 5}s`;
+    petal.style.fontSize = `${1.2 + Math.random() * 1.2}rem`;
+    petalsContainer.appendChild(petal);
+  }
+  document.body.appendChild(petalsContainer);
+}
+
 function renderShareActions() {
   const bar = document.createElement('div');
   bar.className = 'share-bar';
 
   const shareBtn = document.createElement('button');
   shareBtn.className = 'share-btn whatsapp-btn';
-  shareBtn.innerHTML = '💬 Send My Category Ratings & Wishlist to Him via WhatsApp';
+  shareBtn.innerHTML = '💬 Send My Ratings & Wishlist via WhatsApp 🌹';
   shareBtn.addEventListener('click', () => {
-    let msg = "💖 *My Shopping Category Ratings & Wishlist (out of 10)* 💖\n\n";
-    let ratedCount = 0;
+    let msg = "🌸 *My Shopping Ratings & Favorite Outfits* 🌸\n\n";
 
     Object.entries(products).forEach(([key, items]) => {
       const catTitle = DISPLAY_TITLES[key] || key;
       const catRating = localStorage.getItem(`rating_${key}`);
       
       msg += `📌 *Category: ${catTitle}*\n`;
-      if (catRating && catRating > 0) {
-        msg += `   Overall Category Score: ${catRating}/10 ⭐\n`;
-        ratedCount++;
-      } else {
-        msg += `   Overall Category Score: Not rated\n`;
-      }
+      msg += `   Overall Score: ${catRating ? catRating + '/10 ⭐' : 'Not rated'}\n`;
 
-      let itemsAdded = false;
       items.forEach((item, index) => {
         const itemRating = localStorage.getItem(`item_rating_${key}_${index}`);
-        if (itemRating && itemRating > 0) {
-          msg += `   • ${item.title}: ${itemRating}/10 ⭐\n     Link: ${item.url}\n`;
-          itemsAdded = true;
-          ratedCount++;
-        }
+        msg += `   • ${item.title}: ${itemRating ? itemRating + '/10 ⭐' : 'Not rated'}\n     Link: ${item.url}\n`;
       });
 
       msg += "\n";
     });
-
-    if (ratedCount === 0) {
-      alert("Please rate some items or categories first by clicking the stars! ⭐");
-      return;
-    }
 
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
     window.open(waUrl, '_blank');
@@ -178,7 +181,7 @@ function renderShareActions() {
 
   const emailBtn = document.createElement('button');
   emailBtn.className = 'share-btn email-btn';
-  emailBtn.innerHTML = '✉️ Send via Email';
+  emailBtn.innerHTML = '✉️ Send via Email 💌';
   emailBtn.addEventListener('click', () => {
     let body = "My Shopping Category Ratings & Wishlist (out of 10):\n\n";
     Object.entries(products).forEach(([key, items]) => {
@@ -187,13 +190,11 @@ function renderShareActions() {
       body += `Category: ${catTitle}\nOverall Rating: ${catRating ? catRating + '/10' : 'Not rated'}\n`;
       items.forEach((item, index) => {
         const itemRating = localStorage.getItem(`item_rating_${key}_${index}`);
-        if (itemRating) {
-          body += `  - ${item.title}: ${itemRating}/10 stars (${item.url})\n`;
-        }
+        body += `  - ${item.title}: ${itemRating ? itemRating + '/10' : 'Not rated'} (${item.url})\n`;
       });
       body += "\n";
     });
-    window.open(`mailto:?subject=${encodeURIComponent("My Shopping Category Ratings & Outfits!")}&body=${encodeURIComponent(body)}`);
+    window.open(`mailto:?subject=${encodeURIComponent("My Favorite Outfits!")}&body=${encodeURIComponent(body)}`);
   });
 
   bar.appendChild(shareBtn);
@@ -202,6 +203,7 @@ function renderShareActions() {
 }
 
 function init() {
+  createFloatingPetals();
   const app = document.getElementById('app');
   const container = document.createElement('div');
   container.className = 'shop-container';
@@ -219,5 +221,6 @@ function init() {
 }
 
 init();
+
 
 
