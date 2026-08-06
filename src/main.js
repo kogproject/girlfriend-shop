@@ -11,7 +11,7 @@ const DISPLAY_TITLES = {
 };
 
 // Utility to create star rating element (10-star scale)
-function createRating(category) {
+function createRating(storageKey) {
   const container = document.createElement('div');
   container.className = 'rating-wrapper';
 
@@ -21,7 +21,7 @@ function createRating(category) {
   const scoreText = document.createElement('span');
   scoreText.className = 'score-text';
 
-  const saved = parseInt(localStorage.getItem(`rating_${category}`), 10) || 0;
+  const saved = parseInt(localStorage.getItem(storageKey), 10) || 0;
   scoreText.textContent = saved > 0 ? `${saved}/10` : 'Rate (0/10)';
 
   for (let i = 1; i <= 10; i++) {
@@ -30,7 +30,7 @@ function createRating(category) {
     star.textContent = '★';
     star.dataset.value = i;
     star.addEventListener('click', () => {
-      localStorage.setItem(`rating_${category}`, i);
+      localStorage.setItem(storageKey, i);
       updateStars(starsContainer, i);
       scoreText.textContent = `${i}/10`;
     });
@@ -64,7 +64,7 @@ function renderCategory(key, items) {
   catLabel.className = 'cat-rating-label';
   catLabel.textContent = 'Overall Category Rating: ';
   catRatingContainer.appendChild(catLabel);
-  catRatingContainer.appendChild(createRating(key));
+  catRatingContainer.appendChild(createRating(`cat_rating_${key}`));
   section.appendChild(catRatingContainer);
 
   const grid = document.createElement('div');
@@ -162,10 +162,10 @@ function renderShareActions() {
 
     Object.entries(products).forEach(([key, items]) => {
       const catTitle = DISPLAY_TITLES[key] || key;
-      const catRating = localStorage.getItem(`rating_${key}`);
+      const catRating = localStorage.getItem(`cat_rating_${key}`);
       
       msg += `📌 *Category: ${catTitle}*\n`;
-      msg += `   Overall Score: ${catRating ? catRating + '/10 ⭐' : 'Not rated'}\n`;
+      msg += `   Overall Category Score: ${catRating ? catRating + '/10 ⭐' : 'Not rated'}\n`;
 
       items.forEach((item, index) => {
         const itemRating = localStorage.getItem(`item_rating_${key}_${index}`);
@@ -186,7 +186,7 @@ function renderShareActions() {
     let body = "My Shopping Category Ratings & Wishlist (out of 10):\n\n";
     Object.entries(products).forEach(([key, items]) => {
       const catTitle = DISPLAY_TITLES[key] || key;
-      const catRating = localStorage.getItem(`rating_${key}`);
+      const catRating = localStorage.getItem(`cat_rating_${key}`);
       body += `Category: ${catTitle}\nOverall Rating: ${catRating ? catRating + '/10' : 'Not rated'}\n`;
       items.forEach((item, index) => {
         const itemRating = localStorage.getItem(`item_rating_${key}_${index}`);
@@ -221,6 +221,7 @@ function init() {
 }
 
 init();
+
 
 
 
