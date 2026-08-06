@@ -15,8 +15,40 @@
       <div class="exclusive-badge">✨ Exclusively Curated For My Love ✨</div>
       <h1 class="main-title">🌸 Romantic Shopping Boutique 🌸</h1>
       <p class="sub-title">Rate your favorite outfits out of 10 & send your choices directly to me. I'll order whatever your heart desires ❤️</p>
+      <!-- Love Meter Bar -->
+      <div class="love-meter-box">
+        <span class="love-meter-label">💖 Outfit Rating Progress: <span id="meter-percent">0%</span></span>
+        <div class="love-meter-bar">
+          <div id="love-meter-fill" class="love-meter-fill" style="width: 0%;"></div>
+        </div>
+      </div>
     </header>
+
     <div id="app"></div>
+
+    <!-- Floating Secret Gift Box Button -->
+    <div id="gift-box-btn" class="floating-gift-btn">
+      <span class="gift-icon">🎁</span>
+      <span class="gift-text">Secret Surprise!</span>
+    </div>
+
+    <!-- Secret Love Letter Modal -->
+    <div id="surprise-modal" class="surprise-modal">
+      <div class="surprise-modal-content">
+        <span class="surprise-close">&times;</span>
+        <div class="surprise-header">💌 A Special Message For You 💌</div>
+        <div class="surprise-body">
+          <p>My Dearest Love,</p>
+          <p>No matter which outfits you pick today, you are already the most gorgeous, breathtaking person in my entire world! ✨</p>
+          <p>Take your time, choose your absolute favorites, and rate them out of 10. I can’t wait to order everything you love! ❤️</p>
+          <div class="voucher-box">
+            🎟️ <strong>GOLDEN COUPON:</strong> Redeemable for 1 Unlimited Shopping Spree + Infinite Kisses & Hugs! 💋🤗
+          </div>
+        </div>
+        <button id="surprise-claim-btn" class="claim-btn">💖 Send Him a Kiss! 💋</button>
+      </div>
+    </div>
+
     <!-- Photo Lightbox Modal -->
     <div id="lightbox-modal" class="lightbox">
       <span class="lightbox-close">&times;</span>

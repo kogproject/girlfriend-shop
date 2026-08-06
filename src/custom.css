@@ -12,6 +12,121 @@
   --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* Romantic Animations */
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(255,183,3,0.6); }
+  50% { transform: scale(1.05); text-shadow: 0 0 20px rgba(255,183,3,0.9); }
+}
+@keyframes bgShift {
+  0% { background: var(--bg); }
+  50% { background: linear-gradient(135deg, #2b0e21, #4e1c32, #2b0e21); }
+  100% { background: var(--bg); }
+}
+@keyframes lovePulse {
+  0% { box-shadow: 0 0 10px var(--accent-glow); }
+  50% { box-shadow: 0 0 25px var(--accent-glow); }
+  100% { box-shadow: 0 0 10px var(--accent-glow); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes sparkle {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 200%; }
+}
+@keyframes confettiFall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Apply animations */
+.main-title { animation: titlePulse 4s ease-in-out infinite; }
+body { animation: bgShift 30s ease-in-out infinite; }
+.love-meter-bar { animation: lovePulse 3s ease-in-out infinite; }
+
+/* Fade‑in utility */
+.fade-in { animation: fadeInUp 0.6s ease forwards; }
+
+/* Sparkle hover on product cards */
+.product-card {
+  position: relative;
+  overflow: hidden;
+}
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+  animation: sparkle 2s linear infinite;
+}
+.product-card:hover::after { opacity: 0.6; }
+
+/* Confetti styles */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  opacity: 0.9;
+  animation: confettiFall 3s linear forwards;
+}
+/* Romantic Animations */
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(255,183,3,0.6); }
+  50% { transform: scale(1.05); text-shadow: 0 0 20px rgba(255,183,3,0.9); }
+}
+
+@keyframes bgShift {
+  0% { background: var(--bg); }
+  50% { background: linear-gradient(135deg, #2b0e21, #4e1c32, #2b0e21); }
+  100% { background: var(--bg); }
+}
+
+@keyframes lovePulse {
+  0% { box-shadow: 0 0 10px var(--accent-glow); }
+  50% { box-shadow: 0 0 25px var(--accent-glow); }
+  100% { box-shadow: 0 0 10px var(--accent-glow); }
+}
+
+/* Apply animations */
+.main-title {
+  animation: titlePulse 4s ease-in-out infinite;
+}
+
+body {
+  animation: bgShift 30s ease-in-out infinite;
+}
+
+.love-meter-bar {
+  animation: lovePulse 3s ease-in-out infinite;
+}
+
+  --bg: linear-gradient(135deg, #180e19 0%, #2b172d 50%, #15091a 100%);
+  --card-bg: rgba(255, 240, 245, 0.07);
+  --card-border: rgba(255, 182, 193, 0.25);
+  --text: #fbebf2;
+  --accent: #ff758c;
+  --accent-glow: rgba(255, 117, 140, 0.4);
+  --accent-gold: #ffb703;
+  --shadow: rgba(0, 0, 0, 0.4) 0 10px 30px;
+  --border-radius: 16px;
+  --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
 /* Floral Background */
 .floral-bg {
   position: fixed;

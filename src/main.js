@@ -38,7 +38,7 @@ function openLightbox(src, title) {
 
 // Floating heart burst effect when rating is high (>=8)
 function triggerHeartBurst(element) {
-  for (let i = 0; i < 6; i++) {
+
     const heart = document.createElement('span');
     heart.className = 'floating-heart';
     heart.textContent = ['💖', '💕', '💗', '❤️', '✨'][Math.floor(Math.random() * 5)];
@@ -46,6 +46,108 @@ function triggerHeartBurst(element) {
     heart.style.top = `${element.getBoundingClientRect().top - 10}px`;
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 1200);
+  }
+  // launch confetti for extra sparkle
+  launchConfetti();
+}
+
+// Helper to launch confetti animation
+function launchConfetti() {
+  const container = document.createElement('div');
+  container.className = 'confetti-container';
+  for (let i = 0; i < 30; i++) {
+
+    conf.className = 'confetti';
+    conf.style.left = `${Math.random() * 100}vw`;
+    conf.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+    conf.style.animationDelay = `${Math.random() * 0.5}s`;
+    container.appendChild(conf);
+  }
+  document.body.appendChild(container);
+  setTimeout(() => container.remove(), 3000);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Calculate Love Meter Progress
+function updateLoveMeter() {
+  let totalItems = 0;
+  let ratedItems = 0;
+
+  Object.entries(products).forEach(([key, items]) => {
+    // Check category rating
+    totalItems++;
+    if (localStorage.getItem(`cat_rating_${key}`)) ratedItems++;
+
+    // Check item ratings
+    items.forEach((item, idx) => {
+      totalItems++;
+      if (localStorage.getItem(`item_rating_${key}_${idx}`)) ratedItems++;
+    });
+  });
+
+  const percent = Math.min(100, Math.round((ratedItems / totalItems) * 100));
+  const fill = document.getElementById('love-meter-fill');
+  const text = document.getElementById('meter-percent');
+  if (fill) fill.style.width = `${percent}%`;
+  if (text) text.textContent = `${percent}%`;
+}
+
+// Secret Surprise Modal Setup
+function setupSurpriseModal() {
+  const giftBtn = document.getElementById('gift-box-btn');
+  const modal = document.getElementById('surprise-modal');
+  const closeBtn = document.querySelector('.surprise-close');
+  const claimBtn = document.getElementById('surprise-claim-btn');
+
+  if (giftBtn && modal) {
+    giftBtn.onclick = () => {
+      modal.style.display = 'block';
+      triggerHeartBurst(giftBtn);
+    };
+  }
+  if (closeBtn && modal) {
+    closeBtn.onclick = () => { modal.style.display = 'none'; };
+  }
+  if (modal) {
+    modal.onclick = (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    };
+  }
+  if (claimBtn) {
+    claimBtn.onclick = () => {
+      const waMsg = "💖 *I opened your secret surprise letter!* 💖\n\nI love you so much! Thank you for this beautiful shopping boutique! 💋🤗";
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(waMsg)}`, '_blank');
+    };
   }
 }
 
@@ -72,6 +174,7 @@ function createRating(storageKey) {
       localStorage.setItem(storageKey, i);
       updateStars(starsContainer, i);
       scoreText.textContent = `${i}/10`;
+      updateLoveMeter();
 
       if (i >= 8) {
         triggerHeartBurst(e.target);
@@ -95,7 +198,7 @@ function updateStars(container, rating) {
 // Render a single category section
 function renderCategory(key, items) {
   const section = document.createElement('section');
-  section.className = 'category';
+    section.className = 'category fade-in';
   const title = document.createElement('h2');
   title.textContent = DISPLAY_TITLES[key] || key;
   section.appendChild(title);
@@ -114,7 +217,7 @@ function renderCategory(key, items) {
   grid.className = 'grid';
   items.forEach((item, index) => {
     const card = document.createElement('div');
-    card.className = 'product-card';
+        card.className = 'product-card fade-in';
     
     const img = document.createElement('img');
     const baseImgPath = item.image || `/images/${key}/${index + 1}.jpg`;
@@ -301,6 +404,7 @@ function renderShareActions() {
 function init() {
   createFloatingPetals();
   setupLightbox();
+  setupSurpriseModal();
   const app = document.getElementById('app');
   const container = document.createElement('div');
   container.className = 'shop-container';
@@ -315,6 +419,7 @@ function init() {
 
   app.appendChild(container);
   app.appendChild(renderShareActions());
+  updateLoveMeter();
 }
 
 init();
