@@ -74,16 +74,24 @@ function renderCategory(key, items) {
     card.className = 'product-card';
     
     const img = document.createElement('img');
-    img.src = 'https://via.placeholder.com/150?text=Product';
+    const baseImgPath = item.image || `/images/${key}/${index + 1}.jpg`;
+    img.src = baseImgPath;
     img.alt = item.title;
 
-    // Fallback if image fails or URL is provided
+    // Fallback handler if .jpg is not found (tries .png, .jpeg, .webp, placeholder)
+    let fallbackStep = 0;
     img.onerror = function() {
-      this.src = 'https://via.placeholder.com/150?text=Product';
+      const extensions = ['.png', '.jpeg', '.webp', 'https://via.placeholder.com/150?text=Product'];
+      if (fallbackStep < extensions.length) {
+        const ext = extensions[fallbackStep++];
+        if (ext.startsWith('http')) {
+          this.src = ext;
+        } else {
+          const basePathWithoutExt = baseImgPath.substring(0, baseImgPath.lastIndexOf('.'));
+          this.src = basePathWithoutExt + ext;
+        }
+      }
     };
-    if (item.url && (item.url.endsWith('.jpg') || item.url.endsWith('.png') || item.url.endsWith('.jpeg') || item.url.endsWith('.webp'))) {
-      img.src = item.url;
-    }
     
     const title = document.createElement('p');
     title.textContent = item.title;
