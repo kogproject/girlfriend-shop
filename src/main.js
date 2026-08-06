@@ -38,7 +38,7 @@ function openLightbox(src, title) {
 
 // Floating heart burst effect when rating is high (>=8)
 function triggerHeartBurst(element) {
-
+  for (let i = 0; i < 6; i++) {
     const heart = document.createElement('span');
     heart.className = 'floating-heart';
     heart.textContent = ['💖', '💕', '💗', '❤️', '✨'][Math.floor(Math.random() * 5)];
@@ -56,7 +56,7 @@ function launchConfetti() {
   const container = document.createElement('div');
   container.className = 'confetti-container';
   for (let i = 0; i < 30; i++) {
-
+    const conf = document.createElement('div');
     conf.className = 'confetti';
     conf.style.left = `${Math.random() * 100}vw`;
     conf.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
@@ -66,10 +66,6 @@ function launchConfetti() {
   document.body.appendChild(container);
   setTimeout(() => container.remove(), 3000);
 }
-
-
-
-
 
 
 
