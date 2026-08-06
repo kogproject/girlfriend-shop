@@ -1,0 +1,131 @@
+/* Premium glassmorphism design */
+:root {
+  --bg: linear-gradient(135deg, #1e1f26, #27293d);
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --text: #f0f0f0;
+  --accent: #ff6b6b;
+  --accent-dark: #ff4c4c;
+  --shadow: rgba(0, 0, 0, 0.3) 0 8px 16px;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.shop-container {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.category {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.category:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow), 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.category h2 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--border-radius);
+  padding: 0.8rem;
+  text-align: center;
+  flex: 1 1 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.product-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  transition: var(--transition);
+}
+
+.product-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+.star {
+  cursor: pointer;
+  color: #555;
+  transition: var(--transition);
+}
+
+.star.filled {
+  color: var(--accent);
+}
+
+.bra-toggle {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.bra-toggle:hover {
+  background: var(--accent-dark);
+}
+
+@media (max-width: 600px) {
+  .shop-container {
+    grid-template-columns: 1fr;
+  }
+}
