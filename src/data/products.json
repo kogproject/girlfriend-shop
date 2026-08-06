@@ -28,6 +28,9 @@
     {"title": "B&W T-Shirt 5", "image": "/images/plan_t_shifts/5.jpg", "url": "https://ajioapps.onelink.me/ybtf/zimu15de"},
     {"title": "B&W T-Shirt 6", "image": "/images/plan_t_shifts/6.jpg", "url": "https://ajioapps.onelink.me/ybtf/0pge5s7o"}
   ],
+  "casual_tops": [
+    {"title": "Nusara Casual Yellow Top", "image": "/images/casual_tops/1.jpg", "url": "https://www.flipkart.com/nusara-casual-solid-women-yellow-top/p/itm331314b10bf40?pid=TOPHKHNHFCXUEQKJ&marketplace=FLIPKART&lid=LSTTOPHKHNHFCXUEQKJM4ZNLY&_refId=&_appId=WA"}
+  ],
   "special_collection": [
     {"title": "Special Item 1", "image": "/images/special_collection/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/hdcdxwvb"},
     {"title": "Special Item 2", "image": "/images/special_collection/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/zqrrg761"},

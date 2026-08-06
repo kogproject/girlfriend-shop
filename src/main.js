@@ -7,6 +7,7 @@ const DISPLAY_TITLES = {
   jeans: 'Jeans',
   normal_t_shirts: 'Black T‑Shirt',
   plan_t_shifts: 'Black & White T‑Shirt',
+  casual_tops: 'Casual & Yellow Tops',
   special_collection: 'Special Collection'
 };
 
