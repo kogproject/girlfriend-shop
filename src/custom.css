@@ -12,6 +12,25 @@
   --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* Floral Background */
+.floral-bg {
+  position: fixed;
+  inset: 0;
+  background: url('./assets/floral_background.png') center/cover no-repeat;
+  opacity: 0.4;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Optional overlay for subtle tint */
+.floral-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+}
+
+
 body {
   font-family: 'Outfit', system-ui, sans-serif;
   margin: 0;
@@ -364,16 +383,159 @@ body {
   z-index: 100;
 }
 
-@keyframes floatUp {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(0.8);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-60px) scale(1.5);
-  }
+/* Love Meter Progress Bar */
+.love-meter-box {
+  max-width: 450px;
+  margin: 1.2rem auto 0 auto;
+  text-align: center;
 }
+
+.love-meter-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffb703;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.love-meter-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 182, 193, 0.3);
+}
+
+.love-meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff758c, #ffb703);
+  border-radius: 20px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(255, 183, 3, 0.6);
+}
+
+/* Floating Gift Box Button */
+.floating-gift-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff;
+  padding: 0.8rem 1.4rem;
+  border-radius: 50px;
+  box-shadow: 0 0 25px rgba(255, 65, 108, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 99;
+  transition: var(--transition);
+  animation: pulseGift 2s infinite;
+}
+
+.floating-gift-btn:hover {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 0 35px rgba(255, 65, 108, 0.9);
+}
+
+@keyframes pulseGift {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* Surprise Love Letter Modal */
+.surprise-modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(15, 8, 16, 0.88);
+  backdrop-filter: blur(14px);
+}
+
+.surprise-modal-content {
+  background: linear-gradient(135deg, #2c162e, #1a0b1c);
+  border: 2px solid rgba(255, 182, 193, 0.4);
+  margin: 8% auto;
+  padding: 2.2rem;
+  width: 90%;
+  max-width: 520px;
+  border-radius: 24px;
+  box-shadow: 0 0 50px rgba(255, 117, 140, 0.6);
+  position: relative;
+  text-align: center;
+  animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.surprise-header {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: #ffb3c1;
+  margin-bottom: 1.2rem;
+}
+
+.surprise-body p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #fbebf2;
+  margin-bottom: 1rem;
+}
+
+.voucher-box {
+  background: rgba(255, 183, 3, 0.12);
+  border: 1.5px dashed #ffb703;
+  padding: 1rem;
+  border-radius: 14px;
+  color: #ffb703;
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
+}
+
+.claim-btn {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: #fff;
+  border: none;
+  padding: 0.9rem 1.8rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 117, 140, 0.5);
+  transition: var(--transition);
+}
+
+.claim-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(255, 117, 140, 0.8);
+}
+
+.surprise-close {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+  color: #ffb3c1;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.surprise-close:hover {
+  color: #fff;
+}
+
 
 
 
