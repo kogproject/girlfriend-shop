@@ -532,7 +532,55 @@ body {
   cursor: pointer;
 }
 
-.surprise-close:hover {
+/* Floating Petals Animation */
+.petals-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.petal {
+  position: absolute;
+  top: -2rem;
+  animation: fall 8s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Share Buttons Styling */
+.share-btn {
+  border: none;
+  padding: 0.9rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.share-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.whatsapp-btn {
+  background: #25D366;
+  color: #fff;
+}
+
+.email-btn {
+  background: #4285F4;
+  color: #fff;
+}
   color: #fff;
 }
 
