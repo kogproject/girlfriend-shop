@@ -10,6 +10,44 @@ const DISPLAY_TITLES = {
   special_collection: 'Special Collection'
 };
 
+// Lightbox setup
+function setupLightbox() {
+  const modal = document.getElementById('lightbox-modal');
+  const closeBtn = document.querySelector('.lightbox-close');
+  if (closeBtn) {
+    closeBtn.onclick = () => { modal.style.display = 'none'; };
+  }
+  if (modal) {
+    modal.onclick = (e) => {
+      if (e.target === modal) modal.style.display = 'none';
+    };
+  }
+}
+
+function openLightbox(src, title) {
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+  const caption = document.getElementById('lightbox-caption');
+  if (modal && modalImg) {
+    modal.style.display = 'block';
+    modalImg.src = src;
+    if (caption) caption.textContent = title || '';
+  }
+}
+
+// Floating heart burst effect when rating is high (>=8)
+function triggerHeartBurst(element) {
+  for (let i = 0; i < 6; i++) {
+    const heart = document.createElement('span');
+    heart.className = 'floating-heart';
+    heart.textContent = ['💖', '💕', '💗', '❤️', '✨'][Math.floor(Math.random() * 5)];
+    heart.style.left = `${element.getBoundingClientRect().left + Math.random() * 50}px`;
+    heart.style.top = `${element.getBoundingClientRect().top - 10}px`;
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1200);
+  }
+}
+
 // Utility to create star rating element (10-star scale)
 function createRating(storageKey) {
   const container = document.createElement('div');
@@ -29,10 +67,14 @@ function createRating(storageKey) {
     star.className = i <= saved ? 'star filled' : 'star';
     star.textContent = '★';
     star.dataset.value = i;
-    star.addEventListener('click', () => {
+    star.addEventListener('click', (e) => {
       localStorage.setItem(storageKey, i);
       updateStars(starsContainer, i);
       scoreText.textContent = `${i}/10`;
+
+      if (i >= 8) {
+        triggerHeartBurst(e.target);
+      }
     });
     starsContainer.appendChild(star);
   }
@@ -77,6 +119,13 @@ function renderCategory(key, items) {
     const baseImgPath = item.image || `/images/${key}/${index + 1}.jpg`;
     img.src = baseImgPath;
     img.alt = item.title;
+    img.title = 'Click to zoom in 🔍';
+    img.style.cursor = 'zoom-in';
+
+    // Click to open full-screen lightbox preview
+    img.addEventListener('click', () => {
+      openLightbox(img.src, item.title);
+    });
 
     // Fallback handler if .jpg is not found (tries .png, .jpeg, .webp, placeholder)
     let fallbackStep = 0;
@@ -105,7 +154,7 @@ function renderCategory(key, items) {
     link.href = item.url;
     link.target = '_blank';
     link.rel = 'noopener';
-    link.textContent = 'View Product';
+    link.textContent = 'View Product Link';
     link.className = 'product-link';
     
     card.appendChild(img);
@@ -124,7 +173,7 @@ function renderSpecialCollection(key, items) {
   wrapper.id = 'special-collection-wrapper';
 
   const button = document.createElement('button');
-  button.textContent = 'Enter password to view Special Collection';
+  button.textContent = '✨ Enter password to view Special Collection ✨';
   button.className = 'bra-toggle';
   button.addEventListener('click', () => {
     const pwd = prompt('Enter password (hint: yourphone password)');
@@ -162,11 +211,35 @@ function renderShareActions() {
   const bar = document.createElement('div');
   bar.className = 'share-bar';
 
+  // Personal Note Container
+  const noteBox = document.createElement('div');
+  noteBox.className = 'love-note-box';
+  
+  const noteLabel = document.createElement('label');
+  noteLabel.className = 'note-label';
+  noteLabel.innerHTML = '💌 Add a Personal Note or Size Preference for Him:';
+  
+  const noteInput = document.createElement('textarea');
+  noteInput.className = 'note-input';
+  noteInput.placeholder = 'e.g. Please order Size M for Black T-shirt, I love the jeans! 💕';
+  noteInput.rows = 2;
+
+  noteBox.appendChild(noteLabel);
+  noteBox.appendChild(noteInput);
+
+  const buttonContainer = document.createElement('div');
+  buttonContainer.className = 'share-buttons-wrapper';
+
   const shareBtn = document.createElement('button');
   shareBtn.className = 'share-btn whatsapp-btn';
-  shareBtn.innerHTML = '💬 Send My Ratings & Wishlist via WhatsApp 🌹';
+  shareBtn.innerHTML = '💬 Send My Wishlist & Ratings via WhatsApp 🌹';
   shareBtn.addEventListener('click', () => {
     let msg = "🌸 *My Shopping Ratings & Favorite Outfits* 🌸\n\n";
+
+    const customNote = noteInput.value.trim();
+    if (customNote) {
+      msg += `💌 *Personal Note:* "${customNote}"\n\n`;
+    }
 
     Object.entries(products).forEach(([key, items]) => {
       const catTitle = DISPLAY_TITLES[key] || key;
@@ -192,6 +265,10 @@ function renderShareActions() {
   emailBtn.innerHTML = '✉️ Send via Email 💌';
   emailBtn.addEventListener('click', () => {
     let body = "My Shopping Category Ratings & Wishlist (out of 10):\n\n";
+    const customNote = noteInput.value.trim();
+    if (customNote) {
+      body += `Personal Note: "${customNote}"\n\n`;
+    }
     Object.entries(products).forEach(([key, items]) => {
       const catTitle = DISPLAY_TITLES[key] || key;
       const catRating = localStorage.getItem(`cat_rating_${key}`);
@@ -205,13 +282,17 @@ function renderShareActions() {
     window.open(`mailto:?subject=${encodeURIComponent("My Favorite Outfits!")}&body=${encodeURIComponent(body)}`);
   });
 
-  bar.appendChild(shareBtn);
-  bar.appendChild(emailBtn);
+  buttonContainer.appendChild(shareBtn);
+  buttonContainer.appendChild(emailBtn);
+
+  bar.appendChild(noteBox);
+  bar.appendChild(buttonContainer);
   return bar;
 }
 
 function init() {
   createFloatingPetals();
+  setupLightbox();
   const app = document.getElementById('app');
   const container = document.createElement('div');
   container.className = 'shop-container';
@@ -229,6 +310,7 @@ function init() {
 }
 
 init();
+
 
 
 
