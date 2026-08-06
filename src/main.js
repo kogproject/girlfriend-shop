@@ -113,6 +113,75 @@ function renderSpecialCollection(key, items) {
   return wrapper;
 }
 
+function renderShareActions() {
+  const bar = document.createElement('div');
+  bar.className = 'share-bar';
+
+  const shareBtn = document.createElement('button');
+  shareBtn.className = 'share-btn whatsapp-btn';
+  shareBtn.innerHTML = '💬 Send My Wishlist to Him via WhatsApp';
+  shareBtn.addEventListener('click', () => {
+    let msg = "💖 *My Shopping Ratings & Favorites* 💖\n\n";
+    let count = 0;
+
+    Object.entries(products).forEach(([key, items]) => {
+      const catTitle = DISPLAY_TITLES[key] || key;
+      const catRating = localStorage.getItem(`rating_${key}`);
+      let catHeaderAdded = false;
+
+      if (catRating && catRating > 0) {
+        msg += `📌 *Category: ${catTitle}* (${'★'.repeat(catRating)})\n`;
+        catHeaderAdded = true;
+      }
+
+      items.forEach((item, index) => {
+        const itemRating = localStorage.getItem(`item_rating_${key}_${index}`);
+        if (itemRating && itemRating > 0) {
+          if (!catHeaderAdded) {
+            msg += `📌 *Category: ${catTitle}*\n`;
+            catHeaderAdded = true;
+          }
+          msg += `   • ${item.title}: ${'★'.repeat(itemRating)}\n     ${item.url}\n`;
+          count++;
+        }
+      });
+
+      if (catHeaderAdded) msg += "\n";
+    });
+
+    if (count === 0 && !msg.includes('★')) {
+      alert("Please rate some items or categories first by clicking the stars! ⭐");
+      return;
+    }
+
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+    window.open(waUrl, '_blank');
+  });
+
+  const emailBtn = document.createElement('button');
+  emailBtn.className = 'share-btn email-btn';
+  emailBtn.innerHTML = '✉️ Send via Email';
+  emailBtn.addEventListener('click', () => {
+    let body = "My Shopping Ratings & Favorites:\n\n";
+    Object.entries(products).forEach(([key, items]) => {
+      const catTitle = DISPLAY_TITLES[key] || key;
+      const catRating = localStorage.getItem(`rating_${key}`);
+      if (catRating) body += `Category ${catTitle}: ${catRating}/5 stars\n`;
+      items.forEach((item, index) => {
+        const itemRating = localStorage.getItem(`item_rating_${key}_${index}`);
+        if (itemRating) {
+          body += `- ${item.title}: ${itemRating}/5 stars (${item.url})\n`;
+        }
+      });
+    });
+    window.open(`mailto:?subject=${encodeURIComponent("My Favorite Outfits!")}&body=${encodeURIComponent(body)}`);
+  });
+
+  bar.appendChild(shareBtn);
+  bar.appendChild(emailBtn);
+  return bar;
+}
+
 function init() {
   const app = document.getElementById('app');
   const container = document.createElement('div');
@@ -127,6 +196,8 @@ function init() {
   });
 
   app.appendChild(container);
+  app.appendChild(renderShareActions());
 }
 
 init();
+
