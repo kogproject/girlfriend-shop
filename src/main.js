@@ -10,22 +10,35 @@ const DISPLAY_TITLES = {
   special_collection: 'Special Collection'
 };
 
-// Utility to create star rating element
+// Utility to create star rating element (10-star scale)
 function createRating(category) {
   const container = document.createElement('div');
-  container.className = 'rating';
-  const saved = localStorage.getItem(`rating_${category}`) || 0;
-  for (let i = 1; i <= 5; i++) {
+  container.className = 'rating-wrapper';
+
+  const starsContainer = document.createElement('div');
+  starsContainer.className = 'rating';
+
+  const scoreText = document.createElement('span');
+  scoreText.className = 'score-text';
+
+  const saved = parseInt(localStorage.getItem(`rating_${category}`), 10) || 0;
+  scoreText.textContent = saved > 0 ? `${saved}/10` : 'Rate (0/10)';
+
+  for (let i = 1; i <= 10; i++) {
     const star = document.createElement('span');
     star.className = i <= saved ? 'star filled' : 'star';
     star.textContent = '★';
     star.dataset.value = i;
     star.addEventListener('click', () => {
       localStorage.setItem(`rating_${category}`, i);
-      updateStars(container, i);
+      updateStars(starsContainer, i);
+      scoreText.textContent = `${i}/10`;
     });
-    container.appendChild(star);
+    starsContainer.appendChild(star);
   }
+
+  container.appendChild(starsContainer);
+  container.appendChild(scoreText);
   return container;
 }
 
@@ -44,10 +57,15 @@ function renderCategory(key, items) {
   title.textContent = DISPLAY_TITLES[key] || key;
   section.appendChild(title);
 
-  // Rating (skip special collection – locked)
-  if (key !== 'special_collection') {
-    section.appendChild(createRating(key));
-  }
+  // Category overall rating (10 point scale)
+  const catRatingContainer = document.createElement('div');
+  catRatingContainer.className = 'category-rating-box';
+  const catLabel = document.createElement('span');
+  catLabel.className = 'cat-rating-label';
+  catLabel.textContent = 'Overall Category Rating: ';
+  catRatingContainer.appendChild(catLabel);
+  catRatingContainer.appendChild(createRating(key));
+  section.appendChild(catRatingContainer);
 
   const grid = document.createElement('div');
   grid.className = 'grid';
@@ -119,37 +137,37 @@ function renderShareActions() {
 
   const shareBtn = document.createElement('button');
   shareBtn.className = 'share-btn whatsapp-btn';
-  shareBtn.innerHTML = '💬 Send My Wishlist to Him via WhatsApp';
+  shareBtn.innerHTML = '💬 Send My Category Ratings & Wishlist to Him via WhatsApp';
   shareBtn.addEventListener('click', () => {
-    let msg = "💖 *My Shopping Ratings & Favorites* 💖\n\n";
-    let count = 0;
+    let msg = "💖 *My Shopping Category Ratings & Wishlist (out of 10)* 💖\n\n";
+    let ratedCount = 0;
 
     Object.entries(products).forEach(([key, items]) => {
       const catTitle = DISPLAY_TITLES[key] || key;
       const catRating = localStorage.getItem(`rating_${key}`);
-      let catHeaderAdded = false;
-
+      
+      msg += `📌 *Category: ${catTitle}*\n`;
       if (catRating && catRating > 0) {
-        msg += `📌 *Category: ${catTitle}* (${'★'.repeat(catRating)})\n`;
-        catHeaderAdded = true;
+        msg += `   Overall Category Score: ${catRating}/10 ⭐\n`;
+        ratedCount++;
+      } else {
+        msg += `   Overall Category Score: Not rated\n`;
       }
 
+      let itemsAdded = false;
       items.forEach((item, index) => {
         const itemRating = localStorage.getItem(`item_rating_${key}_${index}`);
         if (itemRating && itemRating > 0) {
-          if (!catHeaderAdded) {
-            msg += `📌 *Category: ${catTitle}*\n`;
-            catHeaderAdded = true;
-          }
-          msg += `   • ${item.title}: ${'★'.repeat(itemRating)}\n     ${item.url}\n`;
-          count++;
+          msg += `   • ${item.title}: ${itemRating}/10 ⭐\n     Link: ${item.url}\n`;
+          itemsAdded = true;
+          ratedCount++;
         }
       });
 
-      if (catHeaderAdded) msg += "\n";
+      msg += "\n";
     });
 
-    if (count === 0 && !msg.includes('★')) {
+    if (ratedCount === 0) {
       alert("Please rate some items or categories first by clicking the stars! ⭐");
       return;
     }
@@ -162,19 +180,20 @@ function renderShareActions() {
   emailBtn.className = 'share-btn email-btn';
   emailBtn.innerHTML = '✉️ Send via Email';
   emailBtn.addEventListener('click', () => {
-    let body = "My Shopping Ratings & Favorites:\n\n";
+    let body = "My Shopping Category Ratings & Wishlist (out of 10):\n\n";
     Object.entries(products).forEach(([key, items]) => {
       const catTitle = DISPLAY_TITLES[key] || key;
       const catRating = localStorage.getItem(`rating_${key}`);
-      if (catRating) body += `Category ${catTitle}: ${catRating}/5 stars\n`;
+      body += `Category: ${catTitle}\nOverall Rating: ${catRating ? catRating + '/10' : 'Not rated'}\n`;
       items.forEach((item, index) => {
         const itemRating = localStorage.getItem(`item_rating_${key}_${index}`);
         if (itemRating) {
-          body += `- ${item.title}: ${itemRating}/5 stars (${item.url})\n`;
+          body += `  - ${item.title}: ${itemRating}/10 stars (${item.url})\n`;
         }
       });
+      body += "\n";
     });
-    window.open(`mailto:?subject=${encodeURIComponent("My Favorite Outfits!")}&body=${encodeURIComponent(body)}`);
+    window.open(`mailto:?subject=${encodeURIComponent("My Shopping Category Ratings & Outfits!")}&body=${encodeURIComponent(body)}`);
   });
 
   bar.appendChild(shareBtn);
@@ -200,4 +219,5 @@ function init() {
 }
 
 init();
+
 
