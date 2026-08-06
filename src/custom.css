@@ -137,11 +137,28 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.product-card p {
+.product-card p.product-title {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 600;
   color: #fff;
+}
+
+.product-price {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffb703;
+  background: rgba(255, 183, 3, 0.12);
+  border: 1px dashed rgba(255, 183, 3, 0.35);
+  border-radius: 20px;
+  padding: 0.25rem 0.6rem;
+  margin: 0.2rem 0;
+  display: inline-block;
+}
+
+.product-price span {
+  font-weight: 700;
+  color: #ffb3c1;
 }
 
 .product-link {

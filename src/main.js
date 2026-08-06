@@ -144,8 +144,14 @@ function renderCategory(key, items) {
     };
     
     const title = document.createElement('p');
+    title.className = 'product-title';
     title.textContent = item.title;
     
+    // Romantic Price tag element
+    const priceTag = document.createElement('div');
+    priceTag.className = 'product-price';
+    priceTag.innerHTML = `Price: <span>${item.price || 'Free for You ❤️'}</span>`;
+
     // Rating star control for individual item
     const itemRatingKey = `item_rating_${key}_${index}`;
     const ratingEl = createRating(itemRatingKey);
@@ -160,6 +166,7 @@ function renderCategory(key, items) {
     
     card.appendChild(img);
     card.appendChild(title);
+    card.appendChild(priceTag);
     card.appendChild(ratingEl);
     card.appendChild(link);
     grid.appendChild(card);

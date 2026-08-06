@@ -1,40 +1,40 @@
 {
   "jeans": [
-    {"title": "Jeans 1", "image": "/images/jeans/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/n0n5e6g6"},
-    {"title": "Jeans 2", "image": "/images/jeans/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/u9hstoj0"},
-    {"title": "Jeans 3", "image": "/images/jeans/3.jpg", "url": "https://ajioapps.onelink.me/ybtf/ic8mbu77"},
-    {"title": "Jeans 4", "image": "/images/jeans/4.jpg", "url": "https://ajioapps.onelink.me/ybtf/cffxf42w"},
-    {"title": "Jeans 5", "image": "/images/jeans/5.jpg", "url": "https://ajioapps.onelink.me/ybtf/m58wbf0m"},
-    {"title": "Jeans 6", "image": "/images/jeans/6.jpg", "url": "https://ajioapps.onelink.me/ybtf/85cv8tak"},
-    {"title": "Jeans 7", "image": "/images/jeans/7.jpg", "url": "https://ajioapps.onelink.me/ybtf/0xfcjnph"},
-    {"title": "Jeans 8", "image": "/images/jeans/8.jpg", "url": "https://ajioapps.onelink.me/ybtf/n8p9kg59"},
-    {"title": "Jeans 9", "image": "/images/jeans/9.jpg", "url": "https://ajioapps.onelink.me/ybtf/kknw3dpm"}
+    {"title": "Jeans 1", "price": "100 Kisses 💋", "image": "/images/jeans/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/n0n5e6g6"},
+    {"title": "Jeans 2", "price": "1 Big Warm Hug 🤗", "image": "/images/jeans/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/u9hstoj0"},
+    {"title": "Jeans 3", "price": "1 Ice Cream Date 🍦", "image": "/images/jeans/3.jpg", "url": "https://ajioapps.onelink.me/ybtf/ic8mbu77"},
+    {"title": "Jeans 4", "price": "Your Sweetest Smile 😊", "image": "/images/jeans/4.jpg", "url": "https://ajioapps.onelink.me/ybtf/cffxf42w"},
+    {"title": "Jeans 5", "price": "1 Late Night Walk 🌙", "image": "/images/jeans/5.jpg", "url": "https://ajioapps.onelink.me/ybtf/m58wbf0m"},
+    {"title": "Jeans 6", "price": "10 Sweet Compliments 🌹", "image": "/images/jeans/6.jpg", "url": "https://ajioapps.onelink.me/ybtf/85cv8tak"},
+    {"title": "Jeans 7", "price": "Unlimited Cuddles 🧸", "image": "/images/jeans/7.jpg", "url": "https://ajioapps.onelink.me/ybtf/0xfcjnph"},
+    {"title": "Jeans 8", "price": "1 Movie Night Together 🍿", "image": "/images/jeans/8.jpg", "url": "https://ajioapps.onelink.me/ybtf/n8p9kg59"},
+    {"title": "Jeans 9", "price": "Unlimited Love ❤️", "image": "/images/jeans/9.jpg", "url": "https://ajioapps.onelink.me/ybtf/kknw3dpm"}
   ],
   "normal_t_shirts": [
-    {"title": "Black T-Shirt 1", "image": "/images/normal_t_shirts/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/zp4iprev"},
-    {"title": "Black T-Shirt 2", "image": "/images/normal_t_shirts/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/ne0jqwh6"},
-    {"title": "Black T-Shirt 3", "image": "/images/normal_t_shirts/3.jpg", "url": "https://ajioapps.onelink.me/ybtf/ezszn29n"},
-    {"title": "Black T-Shirt 4", "image": "/images/normal_t_shirts/4.jpg", "url": "https://ajioapps.onelink.me/ybtf/9esgr9vh"},
-    {"title": "Black T-Shirt 5", "image": "/images/normal_t_shirts/5.jpg", "url": "https://ajioapps.onelink.me/ybtf/w20itk5n"},
-    {"title": "Black T-Shirt 6", "image": "/images/normal_t_shirts/6.jpg", "url": "https://ajioapps.onelink.me/ybtf/p7zt65b1"},
-    {"title": "Black T-Shirt 7", "image": "/images/normal_t_shirts/7.jpg", "url": "https://ajioapps.onelink.me/ybtf/znqd4ztb"},
-    {"title": "Black T-Shirt 8", "image": "/images/normal_t_shirts/8.jpg", "url": "https://ajioapps.onelink.me/ybtf/c6m64c6f"}
+    {"title": "Black T-Shirt 1", "price": "50 Kisses 💋", "image": "/images/normal_t_shirts/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/zp4iprev"},
+    {"title": "Black T-Shirt 2", "price": "1 Coffee Date ☕", "image": "/images/normal_t_shirts/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/ne0jqwh6"},
+    {"title": "Black T-Shirt 3", "price": "5 Bear Hugs 🐻", "image": "/images/normal_t_shirts/3.jpg", "url": "https://ajioapps.onelink.me/ybtf/ezszn29n"},
+    {"title": "Black T-Shirt 4", "price": "1 Sunset View 🌅", "image": "/images/normal_t_shirts/4.jpg", "url": "https://ajioapps.onelink.me/ybtf/9esgr9vh"},
+    {"title": "Black T-Shirt 5", "price": "Your Happy Laugh 😄", "image": "/images/normal_t_shirts/5.jpg", "url": "https://ajioapps.onelink.me/ybtf/w20itk5n"},
+    {"title": "Black T-Shirt 6", "price": "Holding Hands 🤝", "image": "/images/normal_t_shirts/6.jpg", "url": "https://ajioapps.onelink.me/ybtf/p7zt65b1"},
+    {"title": "Black T-Shirt 7", "price": "1 Long Drive 🚗", "image": "/images/normal_t_shirts/7.jpg", "url": "https://ajioapps.onelink.me/ybtf/znqd4ztb"},
+    {"title": "Black T-Shirt 8", "price": "Forever & Always 💖", "image": "/images/normal_t_shirts/8.jpg", "url": "https://ajioapps.onelink.me/ybtf/c6m64c6f"}
   ],
   "plan_t_shifts": [
-    {"title": "B&W T-Shirt 1", "image": "/images/plan_t_shifts/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/e9yau6rn"},
-    {"title": "B&W T-Shirt 2", "image": "/images/plan_t_shifts/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/1kl93fxh"},
-    {"title": "B&W T-Shirt 3", "image": "/images/plan_t_shifts/3.jpg", "url": "https://ajioapps.onelink.me/ybtf/kna53guk"},
-    {"title": "B&W T-Shirt 4", "image": "/images/plan_t_shifts/4.jpg", "url": "https://ajioapps.onelink.me/ybtf/tt45meoj"},
-    {"title": "B&W T-Shirt 5", "image": "/images/plan_t_shifts/5.jpg", "url": "https://ajioapps.onelink.me/ybtf/zimu15de"},
-    {"title": "B&W T-Shirt 6", "image": "/images/plan_t_shifts/6.jpg", "url": "https://ajioapps.onelink.me/ybtf/0pge5s7o"}
+    {"title": "B&W T-Shirt 1", "price": "10 FOREVER Hugs 🤗", "image": "/images/plan_t_shifts/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/e9yau6rn"},
+    {"title": "B&W T-Shirt 2", "price": "1 Chocolate Bar 🍫", "image": "/images/plan_t_shifts/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/1kl93fxh"},
+    {"title": "B&W T-Shirt 3", "price": "1 Late Night Call 📞", "image": "/images/plan_t_shifts/3.jpg", "url": "https://ajioapps.onelink.me/ybtf/kna53guk"},
+    {"title": "B&W T-Shirt 4", "price": "1 Cute Selfie 📸", "image": "/images/plan_t_shifts/4.jpg", "url": "https://ajioapps.onelink.me/ybtf/tt45meoj"},
+    {"title": "B&W T-Shirt 5", "price": "Unlimited Smiles ✨", "image": "/images/plan_t_shifts/5.jpg", "url": "https://ajioapps.onelink.me/ybtf/zimu15de"},
+    {"title": "B&W T-Shirt 6", "price": "1000 Kisses 💋", "image": "/images/plan_t_shifts/6.jpg", "url": "https://ajioapps.onelink.me/ybtf/0pge5s7o"}
   ],
   "casual_tops": [
-    {"title": "Nusara Casual Yellow Top", "image": "/images/casual_tops/1.jpg", "url": "https://www.flipkart.com/nusara-casual-solid-women-yellow-top/p/itm331314b10bf40?pid=TOPHKHNHFCXUEQKJ&marketplace=FLIPKART&lid=LSTTOPHKHNHFCXUEQKJM4ZNLY&_refId=&_appId=WA"}
+    {"title": "Nusara Casual Yellow Top", "price": "1 Special Date Night 🌟", "image": "/images/casual_tops/1.jpg", "url": "https://www.flipkart.com/nusara-casual-solid-women-yellow-top/p/itm331314b10bf40?pid=TOPHKHNHFCXUEQKJ&marketplace=FLIPKART&lid=LSTTOPHKHNHFCXUEQKJM4ZNLY&_refId=&_appId=WA"}
   ],
   "special_collection": [
-    {"title": "Special Item 1", "image": "/images/special_collection/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/hdcdxwvb"},
-    {"title": "Special Item 2", "image": "/images/special_collection/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/zqrrg761"},
-    {"title": "Special Item 3", "image": "/images/special_collection/3.jpg", "url": "https://ajioapps.onelink.me/ybtf/4gnlfrbo"},
-    {"title": "Special Item 4", "image": "/images/special_collection/4.jpg", "url": "https://ajioapps.onelink.me/ybtf/45nq3e1c"}
+    {"title": "Special Item 1", "price": "Secret Love ❤️", "image": "/images/special_collection/1.jpg", "url": "https://ajioapps.onelink.me/ybtf/hdcdxwvb"},
+    {"title": "Special Item 2", "price": "Unlimited Forehead Kisses 💋", "image": "/images/special_collection/2.jpg", "url": "https://ajioapps.onelink.me/ybtf/zqrrg761"},
+    {"title": "Special Item 3", "price": "1 Romantic Evening 🌹", "image": "/images/special_collection/3.jpg", "url": "https://ajioapps.onelink.me/ybtf/4gnlfrbo"},
+    {"title": "Special Item 4", "price": "My Entire Heart 💖", "image": "/images/special_collection/4.jpg", "url": "https://ajioapps.onelink.me/ybtf/45nq3e1c"}
   ]
 }
